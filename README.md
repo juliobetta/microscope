@@ -1,0 +1,1 @@
+Sample app of the book [Discover Meteor](http://discovermeteor.com)
