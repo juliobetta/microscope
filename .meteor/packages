@@ -9,3 +9,5 @@ preserve-inputs
 bootstrap
 coffeescript
 router
+accounts-ui-bootstrap-dropdown
+accounts-password
