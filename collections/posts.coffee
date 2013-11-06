@@ -24,5 +24,7 @@ Meteor.methods({
       submitted: new Date().getTime()
     })
 
-    postId = Posts.insert(post)
+    post._id = Posts.insert(post)
+
+    return post
 })
