@@ -11,10 +11,10 @@ Template.postSubmit.events({
     }
 
     # call method post on collections/posts.coffee, for security reason
-    Meteor.call('post', postAttributes, (error, id) ->
+    Meteor.call('post', postAttributes, (error, post) ->
       if error
         alert(error.reason)
       else
-        Meteor.Router.to('postPage', id)
+        Meteor.Router.to('postPage', post)
     )
 })
