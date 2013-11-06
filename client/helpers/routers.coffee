@@ -19,7 +19,7 @@ Meteor.Router.filters({
   'requireLogin': (page) ->
     if Meteor.user()
       page
-    else if (Meteor.loggingIn())
+    else if Meteor.loggingIn()
       'loading'
     else
       'accessDenied'
