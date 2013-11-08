@@ -3,6 +3,7 @@
     "router": {},
     "accounts-ui-bootstrap-dropdown": {},
     "spin": {},
-    "gravatar": {}
+    "gravatar": {},
+    "errors": {}
   }
 }
