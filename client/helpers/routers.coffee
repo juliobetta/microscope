@@ -31,7 +31,7 @@ Meteor.Router.filters({
       'accessDenied'
 
   ,'clearErrors': (page) ->
-    clearErrors()
+    Errors.clearSeen()
     page
 })
 
