@@ -1,7 +1,5 @@
 @Comments = new Meteor.Collection('comments')
 
-Comments.allow({remove: ownsDocument})
-
 Meteor.methods({
   insert_comment: (attributes)->
     user = Meteor.user()
@@ -24,10 +22,13 @@ Meteor.methods({
   ,
   delete_comment: (commentId)->
     comment = Comments.findOne(commentId)
+    post    = Posts.findOne(comment.postId)
 
     throw new Meteor.Error(403, 'Access denied') unless Meteor.userId() is comment.userId
 
-    # decrement commentsCount by -1
     Posts.update(comment.postId, {$inc: {commentsCount: -1}})
+
+    # decrement commentsCount by -1
     Comments.remove(commentId)
+
 })

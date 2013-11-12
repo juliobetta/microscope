@@ -7,5 +7,8 @@ Template.comment.events({
   'click .delete': (e, template)->
     e.preventDefault()
 
-    Meteor.call('delete_comment', template.data._id) if confirm('Delete this comment?')
+    if confirm('Delete this comment?')
+      $("##{template.data._id}").fadeOut(->
+        Meteor.call('delete_comment', template.data._id)
+      )
 })
