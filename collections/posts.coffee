@@ -31,8 +31,9 @@ Meteor.methods({
     # pick out the whitelisted keys
     post = _.extend(_.pick(postAttributes, 'url', 'title', 'message'), {
       userId: user._id,
-      author: user.emails[0].address,
-      submitted: new Date().getTime()
+      author: user.emails[0].address.match(/([^@]+)/)[1], # only username
+      submitted: new Date().getTime(),
+      commentsCount: 0
     })
 
     post._id = Posts.insert(post)

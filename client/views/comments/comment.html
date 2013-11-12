@@ -1,0 +1,14 @@
+<template name='comment'>
+  <li>
+    <h4>
+      <span class='author'>{{author}}</span>
+      <span class='date'>{{submittedText}}</span>
+      {{#if ownComment}}
+        <span class='pull-right'>
+          <a class="btn btn-danger btn-mini delete" href="#">Delete comment</a>
+        </span>
+      {{/if}}
+    </h4>
+    <p>{{body}}</p>
+  </li>
+</template>
