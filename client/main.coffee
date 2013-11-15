@@ -1,4 +1,5 @@
 Meteor.subscribe 'posts'
+Meteor.subscribe 'notifications'
 
 Deps.autorun(->
   Meteor.subscribe('comments', Session.get('currentPostId'))

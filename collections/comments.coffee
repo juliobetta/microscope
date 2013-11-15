@@ -15,10 +15,14 @@ Meteor.methods({
       submitted: new Date().getTime(),
     })
 
+    comment._id = Comments.insert(comment)
+
     #increment commentsCount by 1
     Posts.update(comment.postId, {$inc: {commentsCount: 1}})
 
-    Comments.insert(comment)
+    createCommentNotification(comment)
+
+    return comment._id
   ,
   delete_comment: (commentId)->
     comment = Comments.findOne(commentId)
