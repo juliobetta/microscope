@@ -4,6 +4,7 @@
     "accounts-ui-bootstrap-dropdown": {},
     "spin": {},
     "gravatar": {},
-    "errors": {}
+    "errors": {},
+    "paginated-subscription": {}
   }
 }

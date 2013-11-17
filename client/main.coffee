@@ -1,8 +1,10 @@
-Meteor.subscribe 'posts'
+@postHandle = Meteor.subscribeWithPagination 'newPosts', 10
+
 Meteor.subscribe 'notifications'
 
 Deps.autorun(->
-  Meteor.subscribe('comments', Session.get('currentPostId'))
+  Meteor.subscribe('singlePost', Session.get('currentPostId'))
+  Meteor.subscribe('comments',   Session.get('currentPostId'))
 )
 
 Template.header.helpers({
