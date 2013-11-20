@@ -1,20 +1,20 @@
 # ROUTES
 # ===============================================================
 Meteor.Router.add({
-  '/': 'postsList',
+  '/': {to: 'newPosts', as: 'home'}
+  '/best': 'bestPosts'
+  '/new': 'newPosts'
 
   '/posts/:_id': {
     to: 'postPage',
-    and: (id) ->
-      Session.set('currentPostId', id)
-  },
+    and: (id)-> Session.set('currentPostId', id)
+  }
 
-  '/submit': 'postSubmit',
+  '/submit': 'postSubmit'
 
   '/posts/:_id/edit': {
     to: 'postEdit',
-    and: (id) ->
-      Session.set('currentPostId', id)
+    and: (id)-> Session.set('currentPostId', id)
   }
 })
 
@@ -22,7 +22,7 @@ Meteor.Router.add({
 # ===============================================================
 
 Meteor.Router.filters({
-  'requireLogin': (page) ->
+  requireLogin: (page) ->
     if Meteor.user()
       page
     else if Meteor.loggingIn()
@@ -30,7 +30,7 @@ Meteor.Router.filters({
     else
       'accessDenied'
 
-  ,'clearErrors': (page) ->
+  clearErrors: (page) ->
     Errors.clearSeen()
     page
 })

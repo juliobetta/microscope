@@ -33,10 +33,27 @@ Meteor.methods({
       userId: user._id,
       author: user.emails[0].address.match(/([^@]+)/)[1], # only username
       submitted: new Date().getTime(),
-      commentsCount: 0
+      commentsCount: 0,
+      upvoters: [], votes: 0
     })
 
     post._id = Posts.insert(post)
 
     return post
+
+  upvote: (postId)->
+    user = Meteor.user()
+
+    throw new Meteor.Error(401, "You need to login to upvote") unless user
+
+    # ensure that the user hasn't vote for this post with $ne
+    # find a post which not includes the user in its upvoters set
+    Posts.update({
+      _id: postId,
+      upvoters: {$ne: user._id}
+    },{
+      $addToSet: {upvoters: user._id},
+      $inc: {votes: 1}
+    })
+
 })
